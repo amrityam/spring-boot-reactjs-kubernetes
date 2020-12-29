@@ -22,7 +22,7 @@
 
 ## 1. Run from the sources
 
-### Backend Spring Boot Service:
+### Backend Spring Boot Service
 
 #### Prerequisites
 * Java 11
@@ -75,7 +75,7 @@ Now the frontend react app can be accessed on http://localhost:3000
 
 ## 2. Run using Docker
 
-### Backend Spring Boot Service:
+### Backend Spring Boot Service
 
 #### Prerequisites
 * Docker
