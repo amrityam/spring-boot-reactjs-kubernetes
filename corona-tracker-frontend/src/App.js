@@ -2,7 +2,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Table,Button,Navbar,Nav,NavDropdown,Alert } from 'react-bootstrap';
+import { Table,Alert } from 'react-bootstrap';
 
 class App extends Component {
 
@@ -30,10 +30,6 @@ class App extends Component {
               <td>{country.confirmed}</td>
               <td>{country.dead}</td>
               <td>{country.recovered}</td>
-              <td>
-                <Button variant="success" size="sm">Edit</Button>{' '}
-                <Button variant="danger" size="sm">Delete</Button>{' '}
-              </td>
             </tr>
 
       )
@@ -53,7 +49,6 @@ class App extends Component {
                 <th>Confirmed Cases</th>
                 <th>Deaths</th>
                 <th>Recovered</th>
-                <th>Action</th>
               </tr>
             </thead>
   
