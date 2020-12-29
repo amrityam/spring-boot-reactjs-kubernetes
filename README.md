@@ -3,7 +3,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This is a sample project to demonstrate how to develope and deploy Spring Boot, React and MongoDB microservice based application in Docker and Kubernetes environmnet.
+This is a sample project to demonstrate how to develope and deploy Spring Boot, React and MongoDB microservice based applications in Docker and Kubernetes environment.
 
 ![product-screenshot!](/images/product-screenshot.png)
 
