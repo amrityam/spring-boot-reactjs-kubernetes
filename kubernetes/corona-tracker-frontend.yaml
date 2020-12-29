@@ -1,0 +1,38 @@
+# ... Deployment YAML definition
+apiVersion: apps/v1                                     # API version
+kind: Deployment                                        # Type of kubernetes resource
+metadata:
+  name: corona-tracker-frontend-deploy                  # Name of the kubernetes resource
+  namespace: corona-tracker-app-namespace
+spec:
+  replicas: 1                                           # No of replicas/pods to run
+  selector:                     
+    matchLabels:                                        # This deployment applies to Pods matching the specified labels
+      app: corona-tracker-client
+      
+  template:                                             # Template for creating the Pods in this deployment
+    metadata:
+      name: corona-tracker-frontend-pod
+      labels:                                           # Labels that will be applied to all the Pods in this deployment
+        app: corona-tracker-client
+    spec:                                               # Spec for the containers that will run inside the Pods
+      containers:
+      - name: corona-tracker-frontend
+        image: amrityam/corona-tracker-frontend:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3000                           # Should match the Port that the container listens on
+---
+# ... Service YAML definition
+apiVersion: v1                                          # API version
+kind: Service                                           # Type of kubernetes resource
+metadata:
+  name: corona-tracker-frontend-service                 # Name of the kubernetes resource
+  namespace: corona-tracker-app-namespace
+spec:
+  type: NodePort                                        # Exposes the service by opening a port on each node
+  selector:
+    app: corona-tracker-client                          # Any Pod matching the label `app=polling-app-client` will be picked up by this service
+  ports:                                                # Forward incoming connections on port 80 to the target port 80 in the Pod
+  - port: 3000
+    targetPort: 3000

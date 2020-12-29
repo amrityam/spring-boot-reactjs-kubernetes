@@ -1,0 +1,45 @@
+# ... Deployment YAML definition
+apiVersion: apps/v1                                          # API version
+kind: Deployment                                             # Type of kubernetes resource
+metadata:
+  name: corona-tracker-backend-deploy                        # Name of the kubernetes resource
+  labels:                                                    # Labels that will be applied to this resource
+    app: corona-tracker-appserver
+  namespace: corona-tracker-app-namespace
+spec:
+  replicas: 1                                                # No. of replicas/pods to run in this deployment
+  selector:
+    matchLabels:                                             # The deployment applies to any pods mayching the specified labels
+      app: corona-tracker-appserver
+    
+  template:                                                  # Template for creating the pods in this deployment
+    metadata:
+      name: corona-tracker-backend-pod
+      labels:                                                # Labels that will be applied to each Pod in this deployment
+        app: corona-tracker-appserver
+    spec:                                                    # Spec for the containers that will be run in the Pods
+      containers:
+        - name: corona-tracker-backend
+          image: amrityam/corona-tracker-backend:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080                            # The port that the container exposes
+          env:                                               # Environment variables supplied to the Pod
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/corona-tracker
+---
+# ... Service YAML definition
+apiVersion: v1                                               # API version
+kind: Service                                                # Type of the kubernetes resource
+metadata:
+  name: corona-tracker-backend-service                       # Name of the kubernetes resource
+  labels:                                                    # Labels that will be applied to this resource
+    app: corona-tracker-appserver
+  namespace: corona-tracker-app-namespace
+spec:
+  type: NodePort                                             # The service will be exposed by opening a Port on each node and proxying it. 
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:                                                  # The service exposes Pods with label `app=corona-tracker-appserver`
+    app: corona-tracker-appserver
