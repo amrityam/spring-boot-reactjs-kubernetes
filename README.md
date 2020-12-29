@@ -75,9 +75,7 @@ Now the frontend react app can be accessed on http://localhost:3000
 
 ## 2. Run using Docker
 
-### Backend Spring Boot Service
-
-#### Prerequisites
+### Prerequisites
 * Docker
 
 We have to install the Docker Community Edition (CE).
@@ -85,10 +83,11 @@ We have to install the Docker Community Edition (CE).
 The installation instructions can be followed in the [Official Docker documentation](https://docs.docker.com/get-docker/).
 
 
-
 If you're on Windows, you can follow the handy guide on [how to install Docker on Windows](https://learnk8s.io/installing-docker-kubernetes-windows).
 
 We are now ready to build Docker containers.
+
+### Backend Spring Boot Service
 
 ```
 git clone https://github.com/amrityam/spring-boot-reactjs-kubernetes.git
@@ -114,3 +113,18 @@ The app should connect to MongoDB and then listen for requests.
 
 We can access the app on http://localhost:8080
 
+### Frontend React App
+
+```
+git clone https://github.com/amrityam/spring-boot-reactjs-kubernetes.git
+
+cd corona-tracker-frontend
+
+# Build Docker image for frontend app
+docker build -t corona-tracker-frontend .
+
+# Run the reactjs frontend container
+docker run --name corona-tracker-frontend --rm -p 3000:3000 corona-tracker-frontend
+
+```
+Now the frontend react app can be accessed on http://localhost:3000
