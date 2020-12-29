@@ -204,12 +204,21 @@ That’s it! Now, you’ll be able see the data in the frontend app. Here is how
 
 ![frontend-with-data!](/images/frontend-with-data.png)
 
+## Scale up deployments
+```
+kubectl scale deployments corona-tracker-backend-deploy --replicas=3 --namespace corona-tracker-app-namespace
+```
+
+![scale-up-deployments!](/images/scale-up-deployments.png)
+
 ## Clean up Resources
 If you want to delete the pods, services, deployments then you have to just delete the namespace.
 
 ```
 kubectl delete namespace corona-tracker-app-namespace
 ```
+
+
 
 
 
